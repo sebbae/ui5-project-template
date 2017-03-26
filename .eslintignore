@@ -1,0 +1,7 @@
+bin/**
+coverage/**
+node/**
+node_modules/**
+target/**
+src/test/**
+

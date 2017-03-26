@@ -1,0 +1,72 @@
+{
+	"_version": "1.1.0",
+	"sap.app": {
+		"_version": "1.1.0",
+		"id": "my.app",
+		"type": "application",
+		"i18n": "i18n/messagebundle.properties",
+		"title": "{{APPLICATION_TITLE}}",
+		"description": "{{APPLICATION_DESCRIPTION}}",
+		"applicationVersion": {
+			"version": "1.0.0"
+		}
+	},
+	"sap.ui": {
+		"_version": "1.1.0",
+		"technology": "UI5",
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		},
+		"supportedThemes": ["sap_belize"]
+	},
+	"sap.ui5": {
+		"resources": {
+			"css": [{
+				"uri": "css/library.css"
+			}]
+		},
+		"dependencies": {
+			"libs": {
+				"sap.m": {}
+			}
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "my.app.main.i18n.messagebundle"
+				}
+			}
+		},
+		"rootView": "my.app.main.App",
+		"routing": {
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"viewType": "XML",
+				"viewPath": "my.app.main.view",
+				"controlId": "routingContainer",
+				"controlAggregation": "pages",
+				"byPassed": {
+					"target": "home"
+				}
+			},
+			"routes": [{
+				"pattern": "",
+				"name": "default",
+				"target": "home"
+			}, {
+				"pattern": "home",
+				"name": "home",
+				"target": "home"
+			}],
+			"targets": {
+				"home": {
+					"viewName": "Overview",
+					"viewLevel": 1
+				}
+			}
+		}
+	}
+}

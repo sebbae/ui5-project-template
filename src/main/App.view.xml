@@ -1,0 +1,22 @@
+<mvc:View
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+	controllerName="my.app.main.App"
+	displayBlock="true">
+
+	<App>
+	<Page title="{i18n>APPLICATION_TITLE}" titleLevel="H2" showFooter="false" showHeader="false" showSubHeader="true">
+		<subHeader>
+			<Toolbar>
+				<Button icon="sap-icon://home" tooltip="{i18n>HOME}" press=".handleNavigate" app:route="home"/>
+				<ToolbarSpacer/>
+			</Toolbar>
+		</subHeader>
+		<content>
+			<NavContainer id="routingContainer"/>
+		</content>
+	</Page>
+	</App>
+</mvc:View>
+

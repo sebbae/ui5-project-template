@@ -1,0 +1,16 @@
+<mvc:View
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	controllerName="my.app.main.view.Overview"
+	>
+
+	<Page showFooter="false" showHeader="false" showSubHeader="true">
+		<content>
+			<ScrollContainer class="sapUiSmallMarginBeginEnd">
+				<List headerText="{i18n>OVERVIEW_LIST}" items="{sample>/entries}" >
+					<StandardListItem title="{sample>name}" counter="1"/>
+				</List>
+			</ScrollContainer>
+		</content>
+	</Page>
+</mvc:View>
