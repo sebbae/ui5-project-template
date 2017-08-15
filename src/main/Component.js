@@ -58,7 +58,7 @@ sap.ui.define([
 
 	AppComponent.prototype._catchError = function(sMessage, sURL, iLine, iColumn, oError) {
 		if (!this.bErrorBusDisabled) {
-			sap.ui.getCore().getEventBus().publish("ProSports", "Error", {
+			sap.ui.getCore().getEventBus().publish("Application", "Error", {
 				titleKey: "APPLICATION_ERROR",
 				message: sMessage,
 				stack: oError && oError.stack
@@ -67,16 +67,16 @@ sap.ui.define([
 	};
 
 	AppComponent.prototype._initErrorHandling = function() {
-		sap.ui.getCore().getEventBus().subscribe("ProSports", "Error", this._onError, this);
-		sap.ui.getCore().getEventBus().subscribe("ProSports", "Warning", this._onWarning, this);
+		sap.ui.getCore().getEventBus().subscribe("Application", "Error", this._onError, this);
+		sap.ui.getCore().getEventBus().subscribe("Application", "Warning", this._onWarning, this);
 
 		// route uncaught errors to error bus
 		window.onerror = this._catchError;
 	};
 
 	AppComponent.prototype._exitErrorHandling = function() {
-		sap.ui.getCore().getEventBus().unsubscribe("ProSports", "Error", this._onError, this);
-		sap.ui.getCore().getEventBus().unsubscribe("ProSports", "Warning", this._onWarning, this);
+		sap.ui.getCore().getEventBus().unsubscribe("Application", "Error", this._onError, this);
+		sap.ui.getCore().getEventBus().unsubscribe("Application", "Warning", this._onWarning, this);
 
 		if (window.onerror === this._catchError) {
 			window.onerror = null;
