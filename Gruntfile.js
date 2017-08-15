@@ -8,8 +8,14 @@ module.exports = function(grunt) {
 			]
 		},
 		karma: {
-			verify: {
-			
+			dev: {
+				browsers: ["Chrome"],
+				autoWatch: true,
+				singleRun: false,
+				openui5: {
+					path: "https://sapui5.hana.ondemand.com/1.44.10/resources/sap-ui-core-dbg.js",
+					useMockServer: false
+				},
 			},
 			options: {
 				frameworks: ["openui5", "qunit"],
@@ -43,8 +49,8 @@ module.exports = function(grunt) {
 					subdir: ".", // don't use browser name as subdirectory
 					includeAllSources: true
 				},
-				browsers: ["Chrome"],
-				autoWatch: true,
+				browsers: ["ChromeHeadless"],
+				autoWatch: false,
 				singleRun: true,
 				openui5: {
 					path: "https://sapui5.hana.ondemand.com/1.44.10/resources/sap-ui-core.js",
