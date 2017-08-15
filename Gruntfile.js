@@ -2,6 +2,11 @@ module.exports = function(grunt) {
 	require("load-grunt-tasks")(grunt);
 
 	grunt.initConfig({
+		eslint: {
+			target: [
+				"src/**/*.js"
+			]
+		},
 		karma: {
 			verify: {
 			
@@ -65,16 +70,49 @@ module.exports = function(grunt) {
 				}
 			}
 		},
+		copy: {
+			build: {
+				expand: true,
+				cwd: "src/",
+				src: "**",
+				dest: "target/dist"
+			},
+		},
+		babel: {
+			options: {
+				sourceMap: true,
+				presets: ["env"]
+			},
+			dist: {
+				files: [{
+					expand: true,
+					cwd: "target/dist",
+					src: ["**/*.js"],
+					dest: "target/dist",
+					ext: ".js"
+				}]
+			}
+		},
 		openui5_preload: {
 			component: {
 				options: {
 					resources: {
-						cwd: "src",
-						prefix: "my/app"
+						cwd: "target/dist",
+						prefix: "",
+						src: [
+							"**/*.js",
+							"**/*.fragment.html",
+							"**/*.fragment.json",
+							"**/*.fragment.xml",
+							"**/*.view.html",
+							"**/*.view.json",
+							"**/*.view.xml",
+							"**/*.properties"
+						],
 					},
-					dest: "dist"
+					dest: "target/dist"
 				},
-				components: "my/app"
+				components: true
 			}
 		},
 		connect: {
@@ -93,24 +131,20 @@ module.exports = function(grunt) {
 				}
 			}
 		},
-		eslint: {
-			target: [
-				"src/**/*.js"
-			]
-		},
 		watch: {
 		}
 	});
 
 	grunt.loadNpmTasks("grunt-contrib-jshint");
 	grunt.loadNpmTasks("grunt-contrib-watch");
+	grunt.loadNpmTasks("grunt-contrib-copy");
 	grunt.loadNpmTasks("grunt-karma");
 	grunt.loadNpmTasks("grunt-openui5");
 
-
 	grunt.registerTask("lint", ["eslint"]);
+	grunt.registerTask("test", ["karma"]);
+	grunt.registerTask("build", ["copy:build", "babel", "openui5_preload"]);
 	grunt.registerTask("serve", "Start local server", function() {
 		grunt.task.run(["openui5_connect", "watch"]);
 	});
-
 }; 
