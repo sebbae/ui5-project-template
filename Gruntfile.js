@@ -12,24 +12,16 @@ module.exports = function(grunt) {
 				browsers: ["Chrome"],
 				autoWatch: true,
 				singleRun: false,
-				openui5: {
-					path: "https://sapui5.hana.ondemand.com/1.44.10/resources/sap-ui-core-dbg.js",
-					useMockServer: false
+				preprocessors: {
 				},
+				reporters: [
+					"progress", "dots"
+				],
 			},
-			options: {
-				frameworks: ["openui5", "qunit"],
-				hostname: "localhost",
-				basePath: "",
-				colors: true,
-				captureTimeout: 30000,
-				browserNoActivityTimeout: 900000,
-				files: [{
-						pattern: "test/**/*.spec.js",
-						served: true,
-						included: true,
-						watched: true
-				}],
+			ci: {
+				browsers: ["ChromeHeadless"],
+				autoWatch: false,
+				singleRun: true,
 				preprocessors: {
 					"src/**/*.js": [
 						"coverage"
@@ -38,42 +30,9 @@ module.exports = function(grunt) {
 				reporters: [
 					"progress", "dots", "junit", "coverage"
 				],
-				junitReporter: {
-					outputDir: "target",
-					outputFile: "karma-test-results.xml",
-					useBrowserName: false
-				},
-				coverageReporter: {
-					type: "html", // use "covertura" for CI
-					dir: "target/coverage",
-					subdir: ".", // don't use browser name as subdirectory
-					includeAllSources: true
-				},
-				browsers: ["ChromeHeadless"],
-				autoWatch: false,
-				singleRun: true,
-				openui5: {
-					path: "https://sapui5.hana.ondemand.com/1.44.10/resources/sap-ui-core.js",
-					useMockServer: false
-				},
-				client: {
-					openui5: {
-						config: {
-							theme: "sap_belize",
-							libs: "sap.m",
-							"xx-bindingSyntax": "complex"
-						},
-						mockserver: {
-							config: {
-								autoRespond: true
-							},
-							rootUri: "/my/service/",
-							metadataURL: "/base/test/mock.xml",
-							mockdataSettings: {
-							}
-						}
-					}
-				}
+			},
+			options: {
+				configFile: "karma.conf.js",
 			}
 		},
 		copy: {
@@ -94,8 +53,7 @@ module.exports = function(grunt) {
 					expand: true,
 					cwd: "target/dist",
 					src: ["**/*.js"],
-					dest: "target/dist",
-					ext: ".js"
+					dest: "target/dist"
 				}]
 			}
 		},
@@ -148,7 +106,10 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks("grunt-openui5");
 
 	grunt.registerTask("lint", ["eslint"]);
-	grunt.registerTask("test", ["karma"]);
+	grunt.registerTask("test", "Run Karma tests", function(mode) {
+		mode = mode || "dev";
+		grunt.task.run("karma:" + mode);
+	});
 	grunt.registerTask("build", ["copy:build", "babel", "openui5_preload"]);
 	grunt.registerTask("serve", "Start local server", function() {
 		grunt.task.run(["openui5_connect", "watch"]);

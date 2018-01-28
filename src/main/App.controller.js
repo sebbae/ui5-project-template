@@ -13,5 +13,6 @@ sap.ui.define([
 		sap.ui.core.UIComponent.getRouterFor(this).navTo(sRoute, {});
 	};
 
+	AppController.prototype.handleX = (oEvent) => { console.log("hello world"); };
 	return AppController;
 });

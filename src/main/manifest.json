@@ -9,6 +9,15 @@
 		"description": "{{APPLICATION_DESCRIPTION}}",
 		"applicationVersion": {
 			"version": "1.0.0"
+		},
+		"dataSources": {
+			"default": {
+				"uri": "/my/service/",
+				"type": "OData",
+				"settings": {
+					"odataVersion" : "2.0"
+				}
+			}
 		}
 	},
 	"sap.ui": {
@@ -38,6 +47,10 @@
 				"settings": {
 					"bundleName": "my.app.main.i18n.messagebundle"
 				}
+			},
+			"od": {
+				"type": "sap.ui.model.odata.v2.ODataModel",
+				"dataSource": "default"
 			}
 		},
 		"rootView": "my.app.main.App",
