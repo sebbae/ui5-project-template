@@ -38,7 +38,7 @@ module.exports = function(config) {
 			includeAllSources: true
 		},
 		openui5: {
-			path: "https://sapui5.hana.ondemand.com/1.44.10/resources/sap-ui-core.js",
+			path: "https://sapui5.hana.ondemand.com/1.52.21/resources/sap-ui-core.js",
 			useMockServer: true
 		},
 		client: {

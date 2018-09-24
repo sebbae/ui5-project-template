@@ -58,7 +58,7 @@
 			"config": {
 				"routerClass": "sap.m.routing.Router",
 				"viewType": "XML",
-				"viewPath": "my.app.main.view",
+				"viewPath": "my.app.main",
 				"controlId": "routingContainer",
 				"controlAggregation": "pages",
 				"byPassed": {
@@ -76,7 +76,7 @@
 			}],
 			"targets": {
 				"home": {
-					"viewName": "Overview",
+					"viewName": "overview.Overview",
 					"viewLevel": 1
 				}
 			}

@@ -11,6 +11,7 @@
 			<Toolbar>
 				<Button icon="sap-icon://home" tooltip="{i18n>HOME}" press=".handleNavigate" app:route="home"/>
 				<ToolbarSpacer/>
+				<Label text="{greeting}"/>
 			</Toolbar>
 		</subHeader>
 		<content>

@@ -23,6 +23,7 @@ sap.ui.define([
 			}
 		});
 		When.onTheAppPage.iPressTheHomeButton();
+		Then.onTheAppPage.iSeeAGreetingMessage("Hi!");
 
 		ok(true);
 	});

@@ -35,5 +35,8 @@
     "karma-qunit": "^1.2.1",
     "load-grunt-tasks": "^3.5.2",
     "qunitjs": "^1.16.0"
+  },
+  "dependencies": {
+    "grunt-contrib-watch": "^1.0.0"
   }
 }
