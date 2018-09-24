@@ -12,7 +12,7 @@
 		},
 		"dataSources": {
 			"default": {
-				"uri": "/my/service/",
+				"uri": "/odata/",
 				"type": "OData",
 				"settings": {
 					"odataVersion" : "2.0"
@@ -73,10 +73,18 @@
 				"pattern": "home",
 				"name": "home",
 				"target": "home"
+			}, {
+				"pattern": "samples",
+				"name": "samples",
+				"target": "samples"
 			}],
 			"targets": {
 				"home": {
 					"viewName": "overview.Overview",
+					"viewLevel": 1
+				},
+				"samples": {
+					"viewName": "samples.Samples",
 					"viewLevel": 1
 				}
 			}

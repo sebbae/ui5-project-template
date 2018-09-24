@@ -10,6 +10,7 @@
 		<subHeader>
 			<Toolbar>
 				<Button icon="sap-icon://home" tooltip="{i18n>HOME}" press=".handleNavigate" app:route="home"/>
+				<Button icon="sap-icon://cloud" tooltip="{i18n>SAMPLES}" press=".handleNavigate" app:route="samples"/>
 				<ToolbarSpacer/>
 				<Label text="{greeting}"/>
 			</Toolbar>
